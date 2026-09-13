@@ -1,0 +1,15 @@
+{
+  "name": "islamflow-personal",
+  "version": "28.0.0",
+  "private": true,
+  "scripts": {
+    "android": "cap run android",
+    "sync": "cap sync android",
+    "open": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/cli": "^7.0.0"
+  }
+}
