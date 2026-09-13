@@ -1,6 +1,6 @@
 {
   "name": "islamflow-personal",
-  "version": "38.0.0",
+  "version": "40.0.0",
   "private": true,
   "scripts": {
     "android": "cap run android",
