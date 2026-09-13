@@ -160,7 +160,7 @@
   .top-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0 4px;}
   .top-action{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:11px;padding:9px 4px;font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;}
   .top-action.active{background:var(--teal);color:#F3EEDD;border-color:var(--teal);}
-  .page{display:none}.page.active{display:block}
+  .page{display:none}.page.active{display:block}.page:target{display:block!important}body:has(.page:target) #home.active{display:none!important}
   .today-progress{padding:16px}.progress-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;font-size:13px;font-weight:700}.progress-bar{height:10px;background:var(--gold-soft);border-radius:8px;overflow:hidden}.progress-fill{height:100%;background:linear-gradient(90deg,var(--teal-2),var(--gold));border-radius:8px;transition:width .25s}
   .habit-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}.habit{border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff;cursor:pointer;display:flex;gap:10px;align-items:center}.habit.done{border-color:var(--done);background:#F0F7F3}.habit-check{width:27px;height:27px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;flex:0 0 auto;color:#fff;font-weight:800}.habit.done .habit-check{background:var(--done);border-color:var(--done)}.habit-title{font-size:13px;font-weight:700}.habit-sub{font-size:10px;color:var(--ink-soft);margin-top:3px}
   .section-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}.section-head b{font-size:14px}.section-head span{font-size:11px;color:var(--ink-soft)}
@@ -207,13 +207,13 @@
     <div class="streak"><b id="streakNum">0</b><span>يوم متواصل في العبادات المسجّلة</span></div>
   </div>
   <div class="top-actions">
-    <button class="top-action active" data-page="home">اليوم</button><button class="top-action" data-page="prayersPage">الصلاة</button><button class="top-action" data-page="adhkarPage">الأذكار</button><button class="top-action" data-page="quranPage">القرآن</button><button class="top-action" data-page="journeyPage">رحلتي</button><button class="top-action" data-page="settingsPage">الإعدادات</button>
+    <a class="top-action active" data-page="home" href="#home" onclick="return window.islamFlowGoPage('home');">اليوم</a><a class="top-action" data-page="prayersPage" href="#prayersPage" onclick="return window.islamFlowGoPage('prayersPage');">الصلاة</a><a class="top-action" data-page="adhkarPage" href="#adhkarPage" onclick="return window.islamFlowGoPage('adhkarPage');">الأذكار</a><a class="top-action" data-page="quranPage" href="#quranPage" onclick="return window.islamFlowGoPage('quranPage');">القرآن</a><a class="top-action" data-page="dailyPage" href="#dailyPage" onclick="return window.islamFlowGoPage('dailyPage');">ورد اليوم</a><a class="top-action" data-page="statsPage" href="#statsPage" onclick="return window.islamFlowGoPage('statsPage');">الإحصائيات</a><a class="top-action" data-page="journeyPage" href="#journeyPage" onclick="return window.islamFlowGoPage('journeyPage');">رحلتي</a><a class="top-action" data-page="settingsPage" href="#settingsPage" onclick="return window.islamFlowGoPage('settingsPage');">الإعدادات</a>
   </div>
 
   <main id="home" class="page active">
     <div class="section-title">متابعة اليوم <span id="dayLabel">0 / 0</span></div>
     <div class="card today-progress"><div class="progress-head"><span>إنجاز اليوم</span><b id="dayPercent">0%</b></div><div class="progress-bar"><div class="progress-fill" id="dayProgress" style="width:0%"></div></div></div>
-    <div class="card today-focus"><div class="next-prayer" id="nextPrayerCard"><b>الصلاة القادمة</b><div class="countdown">جارٍ حساب الوقت…</div></div><div class="today-focus-grid"><div class="focus-item"><b>📖 ورد القرآن</b><span id="todayQuranFocus">جارٍ التحديث…</span></div><div class="focus-item"><b>🤲 الأذكار</b><span id="todayDhikrFocus">افتح حصن المسلم لإكمال وردك</span></div></div><div class="quick-actions" style="margin-top:9px"><button class="quick-action" data-go="quranPage">📖 القرآن</button><button class="quick-action" data-go="adhkarPage">🤲 الأذكار</button><button class="quick-action" data-go="prayersPage">🕌 الصلاة</button></div></div>
+    <div class="card today-focus"><div class="next-prayer" id="nextPrayerCard"><b>الصلاة القادمة</b><div class="countdown">جارٍ حساب الوقت…</div></div><div class="today-focus-grid"><div class="focus-item"><b>📖 ورد القرآن</b><span id="todayQuranFocus">جارٍ التحديث…</span></div><div class="focus-item"><b>🤲 الأذكار</b><span id="todayDhikrFocus">افتح حصن المسلم لإكمال وردك</span></div></div><div class="quick-actions" style="margin-top:9px"><a class="quick-action" data-go="quranPage" href="#quranPage">📖 القرآن</a><a class="quick-action" data-go="adhkarPage" href="#adhkarPage">🤲 الأذكار</a><a class="quick-action" data-go="prayersPage" href="#prayersPage">🕌 الصلاة</a></div></div>
     <div class="card" style="margin-top:10px"><div class="section-head"><b>عادات العبادة الأساسية</b><span>اضغط عند الإنجاز</span></div><div class="habit-grid" id="habitGrid"></div></div>
     <div class="section-title">ورد القرآن</div><div class="card" id="quranHome"></div>
     <div class="section-title">الصلاة</div><div class="card" id="homePrayer"><div class="loc-note" id="locNote">جارٍ تحديد موقعك لحساب أوقات الصلاة…</div><div id="prayerList"></div></div>
@@ -233,6 +233,10 @@
       <button class="page-link" data-dhikr-page="hisn"><b>📚 حصن المسلم</b><span>تصفح جميع الأبواب</span></button>
     </div>
     <div class="source-note">الأذكار الأساسية هنا مختارة للورد اليومي، ويمكنك الرجوع إلى حصن المسلم لتصفح الأبواب كاملة.</div>
+    <div id="hisnBrowserTools" class="card" style="display:none;margin-top:10px;padding:10px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px"><b>📚 حصن المسلم</b><span id="hisnCount" class="muted">0 باب</span></div>
+      <input id="hisnSearch" class="field" type="search" placeholder="ابحث في أبواب وأذكار حصن المسلم">
+    </div>
     <div id="categoryList" class="category-list" style="display:none"></div>
     <div id="categoryView" style="display:none"><button class="back-btn" id="backCategories">← كل الأبواب</button><div class="card" id="dhikrCard"></div></div>
   </main>
@@ -347,17 +351,48 @@ window.ISLAMFLOW_FIREBASE_CONFIG = window.ISLAMFLOW_FIREBASE_CONFIG || {
 <script>
 window.openIslamFlowAdhkar = function(target){
   try {
-    var map={morning:'morningPage',evening:'eveningPage',afterPrayer:'afterPrayerPage',sleep:'sleepPage',hisn:'adhkarPage'};
+    var map={morning:'morningPage',evening:'eveningPage',afterPrayer:'afterPrayerPage',sleep:'sleepPage'};
+    if(target==='hisn'){
+      if(typeof window.islamFlowGoPage==='function') window.islamFlowGoPage('adhkarPage');
+      var links=document.querySelector('#adhkarPage .simple-links'); if(links)links.style.display='none';
+      var list=document.getElementById('categoryList'); if(list)list.style.display='grid';
+      var view=document.getElementById('categoryView'); if(view)view.style.display='none';
+      var search=document.getElementById('hisnSearch'); if(search)search.style.display='block';
+      if(typeof window.renderIslamFlowHisn==='function') window.renderIslamFlowHisn('');
+      window.scrollTo(0,0);
+      return;
+    }
     var pageId=map[target]||'adhkarPage';
-    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
-    document.querySelectorAll('.top-action').forEach(function(b){b.classList.remove('active');});
-    var page=document.getElementById(pageId); if(page)page.classList.add('active');
-    var action=document.querySelector('.top-action[data-page="'+pageId+'"]'); if(action)action.classList.add('active');
+    if(typeof window.islamFlowGoPage==='function') window.islamFlowGoPage(pageId);
+    else {
+      document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+      var page=document.getElementById(pageId); if(page)page.classList.add('active');
+    }
     if(target==='morning'||target==='evening'||target==='afterPrayer'||target==='sleep'){
-      activeTab=target; renderDhikr();
+      if(typeof window.renderIslamFlowDhikr==='function') window.renderIslamFlowDhikr(target);
+      else window.__pendingIslamFlowAdhkar=target;
     }
     window.scrollTo(0,0);
   } catch(e){console.error('IslamFlow adhkar navigation error',e);}
+};
+window.islamFlowGoPage = function(pageId){
+  try{
+    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+    document.querySelectorAll('.top-action').forEach(function(b){b.classList.remove('active');});
+    var page=document.getElementById(pageId);
+    if(!page)return false;
+    page.classList.add('active');
+    var action=document.querySelector('.top-action[data-page="'+pageId+'"]');
+    if(action)action.classList.add('active');
+    if(pageId==='quranPage' && typeof window.openQuranReader==='function') window.openQuranReader();
+    if(pageId==='journeyPage' && typeof window.renderIslamFlowJourney==='function') window.renderIslamFlowJourney();
+    if(pageId==='settingsPage' && typeof window.loadIslamFlowSettings==='function') window.loadIslamFlowSettings();
+    if(pageId==='statsPage' && typeof window.renderIslamFlowAnalytics==='function') window.renderIslamFlowAnalytics();
+    if(pageId==='adhkarStatsPage' && typeof window.renderIslamFlowAdhkarStats==='function') window.renderIslamFlowAdhkarStats();
+    if(pageId==='quranStatsPage' && typeof window.renderIslamFlowQuranStats==='function') window.renderIslamFlowQuranStats();
+    window.scrollTo(0,0);
+    return true;
+  }catch(e){console.error('IslamFlow page navigation error',e);return false;}
 };
 </script>
 <script>
@@ -622,7 +657,6 @@ window.openIslamFlowAdhkar = function(target){
   async function initKhatmaAudio(root){var saved=await storeGet(KHATMA_KEY,KHATMA);KHATMA=Object.assign(KHATMA,saved||{});var rs=root.querySelector('#audioReciter'),ss=root.querySelector('#audioSurah'),audio=root.querySelector('#khatmaAudio'),progress=root.querySelector('#audioProgress');ss.innerHTML=SURAH_NAMES.map(function(n,i){return '<option value="'+(i+1)+'">'+(i+1)+' — '+n+'</option>';}).join('');rs.value=KHATMA.reciter;ss.value=KHATMA.surah;function updateProgress(){progress.innerHTML='الختمة الصوتية مستقلة عن الختمة المقروءة — السورة <b>'+KHATMA.surah+' / 114</b> — أتممت <b>'+KHATMA.completed+' / 114</b>';}async function save(){await storeSet(KHATMA_KEY,KHATMA);}function load(play){KHATMA.reciter=rs.value;KHATMA.surah=Number(ss.value);audio.src='https://cdn.islamic.network/quran/audio-surah/64/'+KHATMA.reciter+'/'+KHATMA.surah+'.mp3';updateProgress();save();if(play)audio.play().catch(function(){});}rs.onchange=function(){load(false)};ss.onchange=function(){load(false)};root.querySelector('#audioStart').onclick=function(){load(true)};root.querySelector('#audioStop').onclick=function(){audio.pause();audio.currentTime=0;};audio.onended=async function(){KHATMA.completed=Math.max(KHATMA.completed,KHATMA.surah);if(KHATMA.surah<114){KHATMA.surah++;ss.value=KHATMA.surah;await save();load(true);}else{KHATMA.completed=114;await save();updateProgress();progress.textContent='أتممت الختمة الصوتية كاملةً — 114 / 114 سورة. تقبل الله.';}};updateProgress();load(false);}
   var quranFontSize=Number(localStorage.getItem('islamflow:quran:font')||21);
   var quranNight=localStorage.getItem('islamflow:quran:night')==='1';
-  var SURAH_NAMES=['الفاتحة','البقرة','آل عمران','النساء','المائدة','الأنعام','الأعراف','الأنفال','التوبة','يونس','هود','يوسف','الرعد','إبراهيم','الحجر','النحل','الإسراء','الكهف','مريم','طه','الأنبياء','الحج','المؤمنون','النور','الفرقان','الشعراء','النمل','القصص','العنكبوت','الروم','لقمان','السجدة','الأحزاب','سبأ','فاطر','يس','الصافات','ص','الزمر','غافر','فصلت','الشورى','الزخرف','الدخان','الجاثية','الأحقاف','محمد','الفتح','الحجرات','ق','الذاريات','الطور','النجم','القمر','الرحمن','الواقعة','الحديد','المجادلة','الحشر','الممتحنة','الصف','الجمعة','المنافقون','التغابن','الطلاق','التحريم','الملك','القلم','الحاقة','المعارج','نوح','الجن','المزمل','المدثر','القيامة','الإنسان','المرسلات','النبأ','النازعات','عبس','التكوير','الانفطار','المطففين','الانشقاق','البروج','الطارق','الأعلى','الغاشية','الفجر','البلد','الشمس','الليل','الضحى','الشرح','التين','العلق','القدر','البينة','الزلزلة','العاديات','القارعة','التكاثر','العصر','الهمزة','الفيل','قريش','الماعون','الكوثر','الكافرون','النصر','المسد','الإخلاص','الفلق','الناس'];
   var SURAH_PAGES=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,332,342,350,359,367,377,385,396,404,411,415,418,422,427,433,439,445,451,457,463,468,473,479,484,489,495,499,502,507,511,515,518,521,524,527,530,533,536,539,542,545,548,551,554,557,560,563,566,568,570,572,574,576,578,580,582,584,586,587,589,590,591,592,593,594,595,595,596,596,597,597,597,598,598,599,599,600,600,600,601,601,601,601,602,602,602,603,603,603,604,604,604,604,604,604];
   function renderSurahIndex(){var sel=document.getElementById('quranSurahJump'),list=document.getElementById('surahList');if(!sel||!list)return;list.innerHTML=SURAH_NAMES.map(function(n,i){return '<button class="surah-btn" data-page="'+(SURAH_PAGES[i]||1)+'">'+(i+1)+'. '+n+'<span>تبدأ من صفحة '+(SURAH_PAGES[i]||1)+'</span></button>';}).join('');sel.innerHTML='<option value="">اختر السورة</option>'+SURAH_NAMES.map(function(n,i){return '<option value="'+(SURAH_PAGES[i]||1)+'">'+(i+1)+' — '+n+'</option>';}).join('');list.querySelectorAll('.surah-btn').forEach(function(b){b.onclick=function(){quranSettings.current=Number(b.dataset.page);storeSet(QURAN_KEY,quranSettings);openQuranReader();window.scrollTo({top:0,behavior:'smooth'});};});}
   function applyQuranReaderPrefs(){var r=document.getElementById('quranReader');if(r){r.style.setProperty('--qfont',quranFontSize+'px');r.classList.toggle('quran-night',quranNight);}document.body.classList.toggle('quran-reading-night',quranNight);}
@@ -633,6 +667,10 @@ window.openIslamFlowAdhkar = function(target){
     document.querySelectorAll('.top-action').forEach(function(b){b.classList.remove('active')});var qb=document.querySelector('.top-action[data-page="quranPage"]');if(qb)qb.classList.add('active');document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById('quranPage').classList.add('active');
     try{var data=await fetchQuranPage(page), verses=data.verses||[];document.getElementById('quranPageInfo').textContent='صفحة '+page+' — '+verses.length+' آية';var html='<div class="quran-box"><div class="section-head"><b>مصحف المدينة — صفحة '+page+'</b><span>Hafs</span></div><div style="padding:14px">';verses.forEach(function(a){html+='<p style="font-family:Amiri,serif;font-size:var(--qfont,21px);line-height:2.35;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid var(--line)">'+a.text_uthmani+' <small style="font-family:Tajawal;font-size:11px;color:var(--gold)">﴿'+a.verse_key+'﴾</small></p>'});html+='</div><div class="quran-actions"><button class="quran-btn primary" id="qReadDone">✓ تمت قراءة الصفحة</button></div><div class="quran-actions"><button class="quran-btn" id="qPrev">‹ الصفحة السابقة</button><button class="quran-btn" id="qNext">الصفحة التالية ›</button></div></div>';reader.innerHTML=html;applyQuranReaderPrefs();window.scrollTo({top:reader.getBoundingClientRect().top+window.scrollY-12,behavior:'smooth'});document.getElementById('qReadDone').onclick=async function(){await markQuranPageRead(page);this.textContent='✓ تم تسجيل الصفحة';this.disabled=true;renderQuranKhatmaSummary();};document.getElementById('qPrev').onclick=async function(e){e.preventDefault();e.stopPropagation();if(page>1){quranSettings.current=page-1;await storeSet(QURAN_KEY,quranSettings);openQuranReader();}};document.getElementById('qNext').onclick=async function(e){e.preventDefault();e.stopPropagation();if(page<604){quranSettings.current=page+1;await storeSet(QURAN_KEY,quranSettings);openQuranReader();}};var sx=null;reader.ontouchstart=function(e){sx=e.changedTouches[0].clientX};reader.ontouchend=function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>60){if(dx<0&&page<604){quranSettings.current=page+1;storeSet(QURAN_KEY,quranSettings);openQuranReader()}else if(dx>0&&page>1){quranSettings.current=page-1;storeSet(QURAN_KEY,quranSettings);openQuranReader()}}};updateQuranOfflineStatus()}catch(e){reader.innerHTML='<div class="quran-box">تعذر فتح الصفحة. إذا لم تكن قد نزّلت المصحف، افتح التطبيق مرة مع الإنترنت واضغط «تنزيل المصحف كاملًا للعمل دون إنترنت».</div>'}
   }
+  window.openQuranReader = openQuranReader;
+  window.renderIslamFlowJourney = renderJourney;
+  window.loadIslamFlowSettings = loadSettingsUI;
+  window.renderIslamFlowAnalytics = renderAnalytics;
   var habitState = {};
   async function loadHabits(){ habitState=await storeGet('habits:'+TODAY,{}); renderHabits(); }
   function renderHabits(){
@@ -678,7 +716,7 @@ window.openIslamFlowAdhkar = function(target){
     });
   }
   function openCategory(key){
-    activeCategory=key; document.getElementById('categoryList').style.display='none';document.getElementById('hisnSearch').style.display='none';document.getElementById('categoryView').style.display='block';
+    activeCategory=key; var tools=document.getElementById('hisnBrowserTools');if(tools)tools.style.display='none';document.getElementById('categoryList').style.display='none';var hs=document.getElementById('hisnSearch'); if(hs)hs.style.display='none';document.getElementById('categoryView').style.display='block';
     var card=document.getElementById('dhikrCard');card.innerHTML='<div class="section-head"><b>'+key+'</b><span>'+HISN[key].Adhkar.length+' ذكر</span></div><div class="dhikr-tools"><button class="small-btn primary" id="markCategory">تعليم الباب كمكتمل</button><button class="small-btn" id="resetCategory">تصفير التقدم</button></div>';
     var state=dhikrState[key]||{};
     HISN[key].Adhkar.forEach(function(item,idx){
@@ -690,8 +728,8 @@ window.openIslamFlowAdhkar = function(target){
     document.getElementById('markCategory').onclick=function(){var s=dhikrState[key]||{};HISN[key].Adhkar.forEach(function(x,i){s[String(i)]=Math.max(1,Number(x.Count)||1)});dhikrState[key]=s;storeSet('adhkar:'+TODAY,dhikrState);openCategory(key);};
     document.getElementById('resetCategory').onclick=function(){delete dhikrState[key];storeSet('adhkar:'+TODAY,dhikrState);openCategory(key);};
   }
-  document.getElementById('backCategories').onclick=function(){activeCategory=null;document.getElementById('categoryView').style.display='none';document.getElementById('categoryList').style.display='grid';document.getElementById('hisnSearch').style.display='block';};
-  document.getElementById('hisnSearch').addEventListener('input',function(){renderCategories(this.value);});
+  var backCategoriesEl=document.getElementById('backCategories'); if(backCategoriesEl)backCategoriesEl.onclick=function(){activeCategory=null;document.getElementById('categoryView').style.display='none';document.getElementById('categoryList').style.display='grid';var tools=document.getElementById('hisnBrowserTools');if(tools)tools.style.display='block';var hs=document.getElementById('hisnSearch'); if(hs)hs.style.display='block';renderCategories();};
+  var hisnSearchEl=document.getElementById('hisnSearch'); if(hisnSearchEl)hisnSearchEl.addEventListener('input',function(){renderCategories(this.value);});
 
   var ADHKAR = {
     morning: [
@@ -817,6 +855,14 @@ window.openIslamFlowAdhkar = function(target){
     });
   }
   window.renderIslamFlowDhikr=function(target){if(target)activeTab=target;renderDhikr();};
+  window.renderIslamFlowHisn=function(filter){renderCategories(filter||'');};
+  window.renderIslamFlowAdhkarStats=renderAdhkarStats;
+  window.renderIslamFlowQuranStats=renderQuranStats;
+  if(window.__pendingIslamFlowAdhkar){
+    var pendingAdhkar=window.__pendingIslamFlowAdhkar;
+    window.__pendingIslamFlowAdhkar=null;
+    setTimeout(function(){window.openIslamFlowAdhkar(pendingAdhkar);},0);
+  }
 
   async function loadDhikrState(){
     dhikrState = await storeGet('adhkar:' + TODAY, {});
@@ -857,23 +903,33 @@ window.openIslamFlowAdhkar = function(target){
     var t=this.dataset.statsTab;
     if(t==='prayer'){document.getElementById('statsPrayerView').style.display='block';document.getElementById('statsOtherHint').style.display='none';renderAnalytics();return;}
     document.getElementById('statsPrayerView').style.display='none';var hint=document.getElementById('statsOtherHint');hint.style.display='block';
-    if(t==='quran'){hint.innerHTML='<div class="stats-card"><div class="stats-card-head"><b>📖 إحصائيات القرآن</b><span>صفحات القراءة</span></div><div class="stats-detail">يمكنك متابعة صفحات القرآن وإحصائيات القراءة من قسم إحصائيات القرآن.</div><button class="quran-btn primary" style="margin:0 14px 14px;width:calc(100% - 28px)" onclick="document.querySelector(\'.top-action[data-page=\\\"quranStatsPage\\\"]\').click()">فتح إحصائيات القرآن</button></div>';}else if(t==='adhkar'){hint.innerHTML='<div class="stats-card"><div class="stats-card-head"><b>📿 إحصائيات الأذكار</b><span>تقدمك اليومي</span></div><div class="stats-detail">عدد مرات الذكر والأذكار المكتملة والأبواب التي أنجزتها.</div><button class="quran-btn primary" style="margin:0 14px 14px;width:calc(100% - 28px)" onclick="document.querySelector(\'.top-action[data-page=\\\"adhkarStatsPage\\\"]\').click()">فتح إحصائيات الأذكار</button></div>';}else{hint.innerHTML='<div class="stats-card"><div class="stats-card-head"><b>▥ ملخص رحلتك</b><span>الصلاة والقرآن والأذكار</span></div><div class="stats-detail">هذه الصفحة تجمع مؤشرات عبادتك الأساسية. استخدم الأقسام المتخصصة لمزيد من التفاصيل.</div></div>';}
+    if(t==='quran'){hint.innerHTML='<div class="stats-card"><div class="stats-card-head"><b>📖 إحصائيات القرآن</b><span>صفحات القراءة</span></div><div class="stats-detail">يمكنك متابعة صفحات القرآن وإحصائيات القراءة من قسم إحصائيات القرآن.</div><button class="quran-btn primary" data-open-stats-page="quranStatsPage" style="margin:0 14px 14px;width:calc(100% - 28px)">فتح إحصائيات القرآن</button></div>';}else if(t==='adhkar'){hint.innerHTML='<div class="stats-card"><div class="stats-card-head"><b>📿 إحصائيات الأذكار</b><span>تقدمك اليومي</span></div><div class="stats-detail">عدد مرات الذكر والأذكار المكتملة والأبواب التي أنجزتها.</div><button class="quran-btn primary" data-open-stats-page="adhkarStatsPage" style="margin:0 14px 14px;width:calc(100% - 28px)">فتح إحصائيات الأذكار</button></div>';}else{hint.innerHTML='<div class="stats-card"><div class="stats-card-head"><b>▥ ملخص رحلتك</b><span>الصلاة والقرآن والأذكار</span></div><div class="stats-detail">هذه الصفحة تجمع مؤشرات عبادتك الأساسية. استخدم الأقسام المتخصصة لمزيد من التفاصيل.</div></div>';}
+    hint.querySelectorAll('[data-open-stats-page]').forEach(function(b){b.onclick=function(){var id=b.dataset.openStatsPage;if(window.islamFlowGoPage)window.islamFlowGoPage(id);if(id==='quranStatsPage'&&window.renderIslamFlowQuranStats)window.renderIslamFlowQuranStats();if(id==='adhkarStatsPage'&&window.renderIslamFlowAdhkarStats)window.renderIslamFlowAdhkarStats();};});
   });});
 
-  document.querySelectorAll('.top-action').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      document.querySelectorAll('.top-action').forEach(function(b){b.classList.remove('active');});
-      document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
-      btn.classList.add('active');
-      var page=document.getElementById(btn.dataset.page); if(page)page.classList.add('active');
-       if(btn.dataset.page==='statsPage')renderAnalytics();
-       if(btn.dataset.page==='adhkarStatsPage')renderAdhkarStats();
-       if(btn.dataset.page==='quranStatsPage')renderQuranStats();
-       if(btn.dataset.page==='quranPage')openQuranReader();
-       if(btn.dataset.page==='journeyPage')renderJourney();
-       if(btn.dataset.page==='settingsPage')loadSettingsUI();
-    });
-  });
+  function goToPage(pageId){
+    if(pageId && window.location.hash !== '#'+pageId){
+      try{ window.history.pushState(null,'','#'+pageId); }catch(e){ window.location.hash=pageId; }
+    }
+    document.querySelectorAll('.top-action').forEach(function(b){b.classList.remove('active');});
+    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+    var page=document.getElementById(pageId); if(page)page.classList.add('active');
+    var action=document.querySelector('.top-action[data-page="'+pageId+'"]'); if(action)action.classList.add('active');
+    if(pageId==='statsPage')renderAnalytics();
+    if(pageId==='adhkarStatsPage')renderAdhkarStats();
+    if(pageId==='quranStatsPage')renderQuranStats();
+    if(pageId==='quranPage')openQuranReader();
+    if(pageId==='journeyPage')renderJourney();
+    if(pageId==='settingsPage')loadSettingsUI();
+    if(pageId==='adhkarPage'){
+      var links=document.querySelector('#adhkarPage .simple-links'),list=document.getElementById('categoryList'),view=document.getElementById('categoryView'),tools=document.getElementById('hisnBrowserTools'),search=document.getElementById('hisnSearch');
+      if(links)links.style.display='grid'; if(list)list.style.display='none'; if(view)view.style.display='none'; if(tools)tools.style.display='none'; if(search)search.style.display='block';
+    }
+    window.scrollTo(0,0);
+    return !!page;
+  }
+  window.islamFlowGoPage=goToPage;
+  document.querySelectorAll('.top-action').forEach(function(btn){btn.addEventListener('click',function(){goToPage(btn.dataset.page);});});
 
   renderSurahIndex();
   document.getElementById('quranIndexBtn').onclick=function(){var panel=document.getElementById('quranIndexPanel');if(!panel)return;var open=panel.style.display!=='none';panel.style.display=open?'none':'block';this.textContent=open?'📚 فتح فهرس السور':'📕 إخفاء فهرس السور';if(!open)panel.scrollIntoView({behavior:'smooth',block:'start'});};
@@ -882,10 +938,10 @@ window.openIslamFlowAdhkar = function(target){
   document.getElementById('qFontMinus').onclick=function(){quranFontSize=Math.max(17,quranFontSize-1);localStorage.setItem('islamflow:quran:font',quranFontSize);applyQuranReaderPrefs();openQuranReader();};
   document.getElementById('qFontPlus').onclick=function(){quranFontSize=Math.min(32,quranFontSize+1);localStorage.setItem('islamflow:quran:font',quranFontSize);applyQuranReaderPrefs();openQuranReader();};
   document.getElementById('qNightMode').onclick=function(){quranNight=!quranNight;localStorage.setItem('islamflow:quran:night',quranNight?'1':'0');applyQuranReaderPrefs();};
-  document.querySelectorAll('.quick-action').forEach(function(b){b.onclick=function(){var p=document.querySelector('.top-action[data-page="'+b.dataset.go+'"]');if(p)p.click();};});
+  document.querySelectorAll('.quick-action').forEach(function(b){b.onclick=function(){var p=window.islamFlowGoPage(b.dataset.go);};});
   document.querySelectorAll('[data-daily-tab]').forEach(function(btn){btn.addEventListener('click',function(){window.openIslamFlowAdhkar(this.dataset.dailyTab);});});
   document.querySelectorAll('[data-dhikr-page]').forEach(function(btn){btn.addEventListener('click',function(){window.openIslamFlowAdhkar(this.dataset.dhikrPage);});});
-  document.querySelectorAll('[data-back-home]').forEach(function(btn){btn.addEventListener('click',function(){var home=document.querySelector('.top-action[data-page="home"]');if(home)home.click();});});
+  document.querySelectorAll('[data-back-home]').forEach(function(btn){btn.addEventListener('click',function(){window.islamFlowGoPage('home');});});
   document.getElementById('backFromExplanation').addEventListener('click',function(){window.openIslamFlowAdhkar(LAST_DHIKR_PAGE);});
   bindSettings(); loadAppSettings();
   updateTodayDashboard();setInterval(updateTodayDashboard,60000);
@@ -912,6 +968,15 @@ window.openIslamFlowAdhkar = function(target){
   });
   if('Notification' in window && Notification.permission==='default')setTimeout(function(){Notification.requestPermission().catch(function(){});},1200);
 
+  // ---------- resilient hash navigation ----------
+  function syncHashPage(){
+    var id=(window.location.hash||'').replace(/^#/,'');
+    if(!id) return;
+    if(document.getElementById(id)) goToPage(id);
+  }
+  window.addEventListener('hashchange',syncHashPage);
+  window.addEventListener('popstate',syncHashPage);
+
   // ---------- init ----------
   loadPrayerState().then(function(){
     computeStreak();
@@ -924,6 +989,7 @@ window.openIslamFlowAdhkar = function(target){
   loadQuran();
   loadTasbih();
   initLocation();
+  syncHashPage();
 
 
   // ---------- cloud sync / Google account (v25: local-first + conflict aware) ----------
